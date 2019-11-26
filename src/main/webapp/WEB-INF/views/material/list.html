@@ -57,5 +57,10 @@
         </tr>
     </th:block>
 </table>
+<div>
+    <a th:href="@{'/material'(page=${materials.number - 1})}" th:if="${materials.hasPrevious()}" th:text="Previous"></a>
+    <span th:text="${materials.number + 1}"/>/<span th:text="${materials.totalPages}"/>
+    <a th:href="@{'/material'(page=${materials.number + 1})}" th:if="${materials.hasNext()}" th:text="Next"></a>
+</div>
 </body>
 </html>

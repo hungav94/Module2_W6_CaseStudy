@@ -39,7 +39,7 @@ public class MaterialController {
     }
 
     @GetMapping("/material")
-    public ModelAndView showListMaterial(@RequestParam("s") Optional<String> s,@RequestParam("supplier") Optional<Long> supplier,@PageableDefault(size = 10) Pageable pageable) {
+    public ModelAndView showListMaterial(@RequestParam("s") Optional<String> s,@RequestParam("supplier") Optional<Long> supplier,@PageableDefault(size = 2) Pageable pageable) {
         Page<Material> materials;
         if (s.isPresent()){
             materials = materialService.findAllByCode(s.get(), pageable);
@@ -53,8 +53,6 @@ public class MaterialController {
         modelAndView.addObject("materials", materials);
         return modelAndView;
     }
-
-//    @GetMapping("/search")
 
     @GetMapping("/create-material")
     public ModelAndView showCreateMaterial() {
@@ -126,7 +124,7 @@ public class MaterialController {
     }
 
     @GetMapping("/sort-price-asc")
-    public ModelAndView showSortPriceAsc(@PageableDefault(size = 10) Pageable pageable){
+    public ModelAndView showSortPriceAsc(@PageableDefault(size = 2) Pageable pageable){
         Page<Material> materials = materialService.findAllByOrderByPriceAsc(pageable);
         ModelAndView modelAndView = new ModelAndView("material/list");
         modelAndView.addObject("materials", materials);
@@ -134,7 +132,7 @@ public class MaterialController {
     }
 
     @GetMapping("/sort-price-desc")
-    public ModelAndView showSortPriceDesc(@PageableDefault(size = 10) Pageable pageable){
+    public ModelAndView showSortPriceDesc(@PageableDefault(size = 2) Pageable pageable){
         Page<Material> materials = materialService.findAllByOrderByPriceDesc(pageable);
         ModelAndView modelAndView = new ModelAndView("material/list");
         modelAndView.addObject("materials", materials);
