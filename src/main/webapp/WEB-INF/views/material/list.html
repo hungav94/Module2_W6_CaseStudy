@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Material</title>
+</head>
+<body>
+<h1>Material</h1>
+<p>
+    <a th:href="@{/create-material}">Create a new material</a>
+</p>
+<form>
+    Search by code:
+    <input type="text" name="s">
+    <input type="submit" value="Search">
+</form>
+<br>
+<form onchange="this.submit()">
+    Search by supplier:
+    <select name="supplier">
+        <option>_________</option>
+        <option th:each="s: ${suppliers}" th:value="${s.id}" th:text="${s.name}"></option>
+    </select>
+</form>
+<br>
+<form th:action="@{/sort-price-asc}">
+    <input type="submit" value="PriceAsc">
+</form>
+<form th:action="@{/sort-price-desc}">
+    <input type="submit" value="PriceDesc">
+</form>
+<table border="1">
+    <tr>
+        <td>Code</td>
+        <td>Name</td>
+        <td>Import Date</td>
+        <td>Description</td>
+        <td>Price</td>
+        <td>Quantity</td>
+        <td>Image</td>
+        <td>Supplier</td>
+        <td>Edit</td>
+        <td>Delete</td>
+    </tr>
+    <th:block th:each="material : ${materials}">
+        <tr>
+            <td th:text="${material.code}"></td>
+            <td th:text="${material.name}"></td>
+            <td th:text="${material.importDate}"></td>
+            <td th:text="${material.description}"></td>
+            <td th:text="${material.price}"></td>
+            <td th:text="${material.quantity}"></td>
+            <td><img width="150px" height="150px" th:src="@{'/i/' + ${material.image}}"></td>
+            <td th:text="${material.supplier.id}"></td>
+            <td><a th:href="@{/edit-material/__${material.id}__}">Edit</a></td>
+            <td><a th:href="@{/delete-material/__${material.id}__}" onclick="return confirm('Are you sure?')">Delete</a></td>
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>
