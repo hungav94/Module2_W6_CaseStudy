@@ -1,36 +1,41 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="supplier/list :: head">
     <meta charset="UTF-8">
     <title>Create supplier</title>
 </head>
 <body>
-<h1>Create supplier</h1>
-<p>
-    <a href="/supplier">supplier List</a>
-</p>
-<th:block th:if="${message}">
-    <p th:text="${message}"></p>
-</th:block>
-<form th:action="@{/create-supplier}" th:object="${supplier}" method="post">
-    <table>
-        <tr>
-            <td>Name</td>
-            <td><input type="text" th:field="*{name}"></td>
-        </tr>
-        <tr>
-            <td>Description</td>
-            <td><input type="text" th:field="*{description}"></td>
-        </tr>
-        <tr>
-            <td>Address</td>
-            <td><input type="text" th:field="*{address}"></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td><input type="submit" value="Create supplier"></td>
-        </tr>
-    </table>
-</form>
+<div class="container" style="height: auto">
+    <div th:replace="supplier/list :: menu"></div>
+    <div class="col-sm-4">
+        <h1>Create supplier</h1>
+        <p>
+            <a href="/supplier">supplier List</a>
+        </p>
+        <th:block th:if="${message}">
+            <p th:text="${message}"></p>
+        </th:block>
+        <form th:action="@{/create-supplier}" th:object="${supplier}" method="post">
+            <table class="table">
+                <tr>
+                    <td>Name</td>
+                    <td><input type="text" th:field="*{name}"></td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td><input type="text" th:field="*{description}"></td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td><input type="text" th:field="*{address}"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Create supplier"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
 </body>
 </html>

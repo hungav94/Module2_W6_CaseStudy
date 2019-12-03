@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <title>Material</title>
 </head>
 <body>
@@ -13,6 +14,7 @@
     <div class="navbar navbar-inverse" th:fragment="menu">
         <div class="container-fluid">
             <div class="navbar-header">
+                <a class="navbar-brand" href="/">Home</a>
                 <a class="navbar-brand" href="/material">Material</a>
                 <a class="navbar-brand" href="/supplier">Supplier</a>
             </div>
@@ -70,8 +72,8 @@
             </div>
         </aside>
         <article class="col-sm-9">
-            <table border="1" class="table table-dark">
-                <thead class="thead-dark">
+            <table border="1" class="table">
+                <thead class="thead">
                     <th scope="col">Code</th>
                     <th scope="col">Name</th>
                     <th scope="col">Import Date</th>
@@ -92,20 +94,18 @@
                         <td th:text="${material.price}"></td>
                         <td th:text="${material.quantity}"></td>
                         <td><img width="150px" height="150px" th:src="@{'/i/' + ${material.image}}"></td>
-                        <td th:text="${material.supplier.id}"></td>
-                        <td><a th:href="@{/edit-material/__${material.id}__}">Edit</a></td>
+                        <td th:text="${material.supplier.name}"></td>
+                        <td><a th:href="@{/edit-material/__${material.id}__}"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
                         <td><a th:href="@{/delete-material/__${material.id}__}"
-                               onclick="return confirm('Are you sure?')">Delete</a>
+                               onclick="return confirm('Are you sure?')"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                         </td>
                     </tr>
                 </th:block>
             </table>
             <div>
-                <a th:href="@{'/material'(page=${materials.number - 1})}" th:if="${materials.hasPrevious()}"
-                   th:text="Previous"></a>
+                <a th:href="@{'/material'(page=${materials.number - 1})}" th:if="${materials.hasPrevious()}"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
                 <span th:text="${materials.number + 1}"/>/<span th:text="${materials.totalPages}"/>
-                <a th:href="@{'/material'(page=${materials.number + 1})}" th:if="${materials.hasNext()}"
-                   th:text="Next"></a>
+                <a th:href="@{'/material'(page=${materials.number + 1})}" th:if="${materials.hasNext()}"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
             </div>
         </article>
     </div>

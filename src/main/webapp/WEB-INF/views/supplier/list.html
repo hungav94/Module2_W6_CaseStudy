@@ -1,31 +1,48 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:fragment="head">
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <title>Supplier</title>
 </head>
 <body>
-<h1>Supplier</h1>
-<p>
-    <a th:href="@{/create-supplier}">Create a new supplier</a>
-</p>
-<table border="1">
-    <tr>
-        <td>Name</td>
-        <td>Description</td>
-        <td>Address</td>
-        <td>Edit</td>
-        <td>Delete</td>
-    </tr>
-    <th:block th:each="supplier : ${suppliers}">
-        <tr>
-            <td th:text="${supplier.name}"></td>
-            <td th:text="${supplier.description}"></td>
-            <td th:text="${supplier.address}"></td>
-            <td><a th:href="@{/edit-supplier/__${supplier.id}__}">Edit</a></td>
-            <td><a th:href="@{/edit-supplier/__${supplier.id}__}" onclick="return confirm('Are you sure?')">Delete</a></td>
-        </tr>
-    </th:block>
-</table>
+<div class="container" style="height: auto">
+    <div class="navbar navbar-inverse" th:fragment="menu">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">Home</a>
+                <a class="navbar-brand" href="/material">Material</a>
+                <a class="navbar-brand" href="/supplier">Supplier</a>
+            </div>
+        </div>
+    </div>
+    <h1>Supplier</h1>
+    <p>
+        <a th:href="@{/create-supplier}">Create a new supplier</a>
+    </p>
+    <table border="1" class="table">
+        <thead>
+            <td scope="col">Name</td>
+            <td scope="col">Description</td>
+            <td scope="col">Address</td>
+            <td scope="col">Edit</td>
+            <td scope="col">Delete</td>
+        </thead>
+        <th:block th:each="supplier : ${suppliers}">
+            <tr>
+                <td th:text="${supplier.name}"></td>
+                <td th:text="${supplier.description}"></td>
+                <td th:text="${supplier.address}"></td>
+                <td><a th:href="@{/edit-supplier/__${supplier.id}__}"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+                <td><a th:href="@{/edit-supplier/__${supplier.id}__}"
+                       onclick="return confirm('Are you sure?')"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+            </tr>
+        </th:block>
+    </table>
+</div>
 </body>
 </html>
