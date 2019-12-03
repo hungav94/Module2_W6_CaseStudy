@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Create Material</title>
-</head>
+<head th:replace="material/list :: head"></head>
 <body>
+
+<div th:replace="material/list :: menu"></div>
 <h1>Create material</h1>
 <p>
     <a href="/material">Material list</a>
